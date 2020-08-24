@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".LoginActivity">
+
+        <EditText
+            android:id="@+id/addressReg"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textPersonName"
+            android:paddingLeft="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/lastNameReg"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/lastNameReg"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameReg" />
+
+        <EditText
+            android:id="@+id/emailReg"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/addressReg"
+            app:layout_constraintStart_toStartOf="@+id/addressReg"
+            app:layout_constraintTop_toBottomOf="@+id/addressReg" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:text="REGISTER"
+            android:background="#690007"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/passwordReg"
+            app:layout_constraintStart_toStartOf="@+id/passwordReg"
+            app:layout_constraintTop_toBottomOf="@+id/passwordReg" />
+
+        <Button
+            android:id="@+id/alreadyHaveAnAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:textColor="#690007"
+            app:layout_constraintStart_toStartOf="@+id/registerButton"
+            app:layout_constraintEnd_toEndOf="@+id/registerButton"
+            app:layout_constraintTop_toBottomOf="@+id/registerButton"
+            android:layout_margin="10dp"
+            android:background="#fff"/>
+
+        <EditText
+            android:id="@+id/passwordReg"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:paddingLeft="16sp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/emailReg"
+            app:layout_constraintStart_toStartOf="@+id/emailReg"
+            app:layout_constraintTop_toBottomOf="@+id/emailReg" />
+
+        <EditText
+            android:id="@+id/firstNameReg"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:paddingLeft="16sp"
+            android:hint="First name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/lastNameReg"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:paddingLeft="16sp"
+            android:hint="Last name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/firstNameReg"
+            app:layout_constraintStart_toStartOf="@+id/firstNameReg"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameReg" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
