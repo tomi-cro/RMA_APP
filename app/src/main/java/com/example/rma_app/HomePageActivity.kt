@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rma_app.adapters.ShowsAdapter
 import com.example.rma_app.model.Show
@@ -47,7 +48,7 @@ class HomePageActivity : AppCompatActivity() {
     }
     private fun showData(shows: List<Show>){
         recViewShows.apply {
-            layoutManager = LinearLayoutManager(this@HomePageActivity)
+            layoutManager = GridLayoutManager(this@HomePageActivity, 2)
             adapter = ShowsAdapter(shows)
         }
     }

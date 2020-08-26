@@ -1,6 +1,8 @@
 package com.example.rma_app.model
 
-data class Show(
+import java.io.Serializable
+
+data class Show (
     val id: String = "",
     val name: String = "",
     val url: String = "",
@@ -10,15 +12,14 @@ data class Show(
     val summary: String = "",
     val image: Image = Image("",""),
     val schedule: Schedule
-
-)
+) : Serializable
 
 data class Image(
     val medium: String = "",
     val original: String = ""
-)
+) : Serializable
 
 data class Schedule(
     val time: String = "",
     val days: List<String>
-)
+) : Serializable
