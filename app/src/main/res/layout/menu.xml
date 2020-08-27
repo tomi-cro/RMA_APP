@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navAllShows"
+            android:icon="@drawable/ic_baseline_tv_24"
+            android:title="All shows" />
+
+        <item
+            android:id="@+id/navFavouriteShows"
+            android:icon="@drawable/ic_baseline_live_tv_24"
+            android:title="Favourite shows" />
+
+        <item
+            android:id="@+id/navProfile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="My profile" />
+
+        <item
+            android:id="@+id/navSignOut"
+            android:icon="@drawable/ic_baseline_settings_backup_restore_24"
+            android:title="Sign out" />
+
+    </group>
+
+</menu>
