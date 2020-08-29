@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true">
 
     <include
-        layout="@layout/show_recycler"
+        layout="@layout/content_main"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
 

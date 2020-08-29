@@ -21,8 +21,7 @@ class ShowDetails : AppCompatActivity() {
         showDetailStatus.text = setTextHTML("<b>Status: </b>" + show?.status)
     }
 
-    fun setTextHTML(html: String): Spanned
-    {
+    fun setTextHTML(html: String): Spanned {
         val result: Spanned = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
         } else {

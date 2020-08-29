@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rma_app.adapters.ShowsAdapter
 import com.example.rma_app.model.Show
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_home_page.*
-import kotlinx.android.synthetic.main.show_recycler.*
+import kotlinx.android.synthetic.main.fragment_shows.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -27,23 +26,9 @@ class HomePageActivity : AppCompatActivity() {
 
         navView.setCheckedItem(R.id.navAllShows);
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://api.tvmaze.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val api = retrofit.create(ApiService::class.java)
-
-        api.fetchAllShows().enqueue(object : Callback<List<Show>>{
-            override fun onResponse(call: Call<List<Show>>, response: Response<List<Show>>) {
-                Log.d("test", "onResponse " + response.body()!![1])
-                showData(response.body()!!)
-            }
-
-            override fun onFailure(call: Call<List<Show>>, t: Throwable) {
-                Log.d("test", "onFailure" + t.message)
-            }
-        })
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, ShowsFragment())
+            .commit()
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId){
@@ -52,6 +37,21 @@ class HomePageActivity : AppCompatActivity() {
                     val intent = Intent(this, LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
+                }
+                R.id.navProfile -> {
+                    val uuid = auth.currentUser?.uid
+                    val fragment = ProfileFragment()
+                    val bundle = Bundle()
+                    bundle.putString("uuid", uuid)
+                    fragment.arguments = bundle
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, fragment)
+                        .commit()
+                }
+                R.id.navAllShows -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, ShowsFragment())
+                        .commit()
                 }
             }
             it.isChecked = true
@@ -62,13 +62,6 @@ class HomePageActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
-        }
-    }
-
-    private fun showData(shows: List<Show>){
-        recViewShows.apply {
-            layoutManager = GridLayoutManager(this@HomePageActivity, 2)
-            adapter = ShowsAdapter(shows)
         }
     }
 
