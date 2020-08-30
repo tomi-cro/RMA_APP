@@ -12,7 +12,9 @@ data class Show (
     val summary: String = "",
     val image: Image = Image("",""),
     val schedule: Schedule
-) : Serializable
+) : Serializable{
+    constructor() : this("","","","","","","", Image("", ""),Schedule("", listOf("")))
+}
 
 data class Image(
     val medium: String = "",

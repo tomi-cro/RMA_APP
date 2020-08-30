@@ -47,11 +47,12 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:hint="Enter Password">
+
         <EditText
             android:id="@+id/passwordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textPassword"
             tools:layout_editor_absoluteX="43dp"
             tools:layout_editor_absoluteY="167dp" />
 

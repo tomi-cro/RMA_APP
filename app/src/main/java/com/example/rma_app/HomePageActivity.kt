@@ -23,6 +23,7 @@ class HomePageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
         auth = FirebaseAuth.getInstance();
+        val uuid = auth.currentUser?.uid
 
         navView.setCheckedItem(R.id.navAllShows);
 
@@ -39,7 +40,6 @@ class HomePageActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.navProfile -> {
-                    val uuid = auth.currentUser?.uid
                     val fragment = ProfileFragment()
                     val bundle = Bundle()
                     bundle.putString("uuid", uuid)
@@ -51,6 +51,15 @@ class HomePageActivity : AppCompatActivity() {
                 R.id.navAllShows -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frameLayout, ShowsFragment())
+                        .commit()
+                }
+                R.id.navFavouriteShows -> {
+                    val fragment = FavouriteShowsFragment()
+                    val bundle = Bundle()
+                    bundle.putString("uuid", uuid)
+                    fragment.arguments = bundle
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, fragment)
                         .commit()
                 }
             }

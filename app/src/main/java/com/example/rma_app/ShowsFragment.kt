@@ -43,7 +43,7 @@ class ShowsFragment : Fragment() {
         return root
     }
 
-    private fun showData(shows: List<Show>){
+    fun showData(shows: List<Show>){
         recViewShows.apply {
             layoutManager = GridLayoutManager(activity, 2)
             adapter = ShowsAdapter(shows)
