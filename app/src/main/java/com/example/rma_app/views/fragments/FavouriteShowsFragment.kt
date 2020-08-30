@@ -1,15 +1,14 @@
-package com.example.rma_app
+package com.example.rma_app.views.fragments
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.rma_app.R
 import com.example.rma_app.adapters.ShowsAdapter
 import com.example.rma_app.listeners.ReadDataListener
 import com.example.rma_app.model.Image
@@ -20,9 +19,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_shows.*
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.concurrent.Semaphore
 
 class FavouriteShowsFragment : Fragment() {
     lateinit var shows: ArrayList<Show>
@@ -34,16 +30,15 @@ class FavouriteShowsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_shows, container, false)
 
         val userId = arguments?.getString("uuid")
-        if (userId != null) {
-            getFavouriteShows(userId, object : ReadDataListener {
-                override fun readData(list: ArrayList<Show>) {
-                    for(e in list) {
-                        shows.add(e)
-                    }
-                    showData(shows)
+        getFavouriteShows(userId!!, object : ReadDataListener {
+            override fun readData(list: ArrayList<Show>) {
+                for(e in list) {
+                    shows.add(e)
                 }
-            })
-        }
+                showData(shows)
+            }
+        })
+
         return root
     }
 
@@ -77,9 +72,11 @@ class FavouriteShowsFragment : Fragment() {
     }
 
     fun showData(shows: List<Show>){
-        recViewShows.apply {
-            layoutManager = GridLayoutManager(activity, 2)
-            adapter = ShowsAdapter(shows)
+        if(activity != null){
+            recViewShows.apply {
+                layoutManager = GridLayoutManager(activity, 2)
+                adapter = ShowsAdapter(shows)
+            }
         }
     }
 }

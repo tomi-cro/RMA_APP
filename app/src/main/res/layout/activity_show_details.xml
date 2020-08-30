@@ -9,7 +9,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ShowDetails">
+        tools:context=".views.activities.ShowDetails">
 
         <ImageView
             android:id="@+id/showDetailCover"
@@ -72,6 +72,9 @@
             app:layout_constraintTop_toBottomOf="@id/showDetailStatus"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_margin="30dp"
+            android:background="#690007"
+            android:textColor="#fff"
             android:padding="20dp"/>
 
 

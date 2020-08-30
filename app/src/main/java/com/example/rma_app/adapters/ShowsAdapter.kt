@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rma_app.R
-import com.example.rma_app.ShowDetails
+import com.example.rma_app.views.activities.ShowDetails
 import com.example.rma_app.model.Show
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.show_row.view.*

@@ -1,4 +1,4 @@
-package com.example.rma_app
+package com.example.rma_app.views.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.rma_app.R
 import com.example.rma_app.adapters.ShowsAdapter
+import com.example.rma_app.model.Image
+import com.example.rma_app.model.Schedule
 import com.example.rma_app.model.Show
+import com.example.rma_app.networking.ApiService
 import kotlinx.android.synthetic.main.fragment_shows.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +36,9 @@ class ShowsFragment : Fragment() {
         api.fetchAllShows().enqueue(object : Callback<List<Show>> {
             override fun onResponse(call: Call<List<Show>>, response: Response<List<Show>>) {
                 Log.d("test", "onResponse " + response.body()!![1])
-                showData(response.body()!!)
+                val shows = response.body()
+                if(shows != null)
+                    showData(shows)
             }
 
             override fun onFailure(call: Call<List<Show>>, t: Throwable) {
@@ -44,9 +50,11 @@ class ShowsFragment : Fragment() {
     }
 
     fun showData(shows: List<Show>){
-        recViewShows.apply {
-            layoutManager = GridLayoutManager(activity, 2)
-            adapter = ShowsAdapter(shows)
+        if(activity != null){
+            recViewShows.apply {
+                layoutManager = GridLayoutManager(activity, 2)
+                adapter = ShowsAdapter(shows)
+            }
         }
     }
 }

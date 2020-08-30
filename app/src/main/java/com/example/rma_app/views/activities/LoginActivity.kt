@@ -1,13 +1,13 @@
-package com.example.rma_app
+package com.example.rma_app.views.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.rma_app.R
 import kotlinx.android.synthetic.main.activity_login.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun logIn() {
         val intent = Intent(this, HomePageActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK) //pritiskom na back button vodi van iz aplikacije, a ne na RegistrationActivity
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     }
 

@@ -1,20 +1,16 @@
-package com.example.rma_app
+package com.example.rma_app.views.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.rma_app.adapters.ShowsAdapter
-import com.example.rma_app.model.Show
+import com.example.rma_app.R
+import com.example.rma_app.views.fragments.FavouriteShowsFragment
+import com.example.rma_app.views.fragments.ProfileFragment
+import com.example.rma_app.views.fragments.ShowsFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home_page.*
-import kotlinx.android.synthetic.main.fragment_shows.*
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HomePageActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -28,7 +24,10 @@ class HomePageActivity : AppCompatActivity() {
         navView.setCheckedItem(R.id.navAllShows);
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frameLayout, ShowsFragment())
+            .replace(
+                R.id.frameLayout,
+                ShowsFragment()
+            )
             .commit()
 
         navView.setNavigationItemSelectedListener {
@@ -40,7 +39,8 @@ class HomePageActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.navProfile -> {
-                    val fragment = ProfileFragment()
+                    val fragment =
+                        ProfileFragment()
                     val bundle = Bundle()
                     bundle.putString("uuid", uuid)
                     fragment.arguments = bundle
@@ -50,11 +50,15 @@ class HomePageActivity : AppCompatActivity() {
                 }
                 R.id.navAllShows -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, ShowsFragment())
+                        .replace(
+                            R.id.frameLayout,
+                            ShowsFragment()
+                        )
                         .commit()
                 }
                 R.id.navFavouriteShows -> {
-                    val fragment = FavouriteShowsFragment()
+                    val fragment =
+                        FavouriteShowsFragment()
                     val bundle = Bundle()
                     bundle.putString("uuid", uuid)
                     fragment.arguments = bundle
@@ -72,6 +76,7 @@ class HomePageActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

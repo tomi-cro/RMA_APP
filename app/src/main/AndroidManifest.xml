@@ -13,10 +13,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ShowDetails"></activity>
-        <activity android:name=".HomePageActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".views.activities.ShowDetails"></activity>
+        <activity android:name=".views.activities.HomePageActivity" />
+        <activity android:name=".views.activities.RegisterActivity" />
+        <activity android:name=".views.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

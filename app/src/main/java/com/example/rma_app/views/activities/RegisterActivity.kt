@@ -1,10 +1,11 @@
-package com.example.rma_app
+package com.example.rma_app.views.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.rma_app.R
 import com.example.rma_app.model.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -97,4 +98,3 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 }
-class FirebaseUser(val uid: String, val username: String, val firstName: String, val lastName: String)

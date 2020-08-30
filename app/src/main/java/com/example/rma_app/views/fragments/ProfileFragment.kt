@@ -1,5 +1,6 @@
-package com.example.rma_app
+package com.example.rma_app.views.fragments
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.text.Html
@@ -8,9 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.rma_app.R
 import com.example.rma_app.model.User
+import com.example.rma_app.utils.Utility
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -31,30 +34,22 @@ class ProfileFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
-    private fun showUserDetails(uuid: String){
+    fun showUserDetails(uuid: String){
         FirebaseDatabase.getInstance().reference
             .child("users/$uuid")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     var user = dataSnapshot.value as Map<String, Any>
-                    profileFullName.text = setTextHTML("<b>Full name: </b>" + user["name"] + " " + user["surname"])
-                    profileAddress.text = setTextHTML("<b>Address: </b>" + user["address"])
+                    profileFullName.text =
+                        Utility.setTextHTML("<b>Full name: </b>" + user["name"] + " " + user["surname"])
+                    profileAddress.text = Utility.setTextHTML("<b>Address: </b>" + user["address"])
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     // Getting Post failed, log a message
-                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                    Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
                     // ...
                 }
             })
-    }
-
-    fun setTextHTML(html: String): Spanned {
-        val result: Spanned = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            Html.fromHtml(html)
-        }
-        return result
     }
 }

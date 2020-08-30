@@ -1,4 +1,4 @@
-package com.example.rma_app
+package com.example.rma_app.networking
 
 import com.example.rma_app.model.Show
 import retrofit2.Call
